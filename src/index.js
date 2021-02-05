@@ -1,5 +1,11 @@
 console.log("First web service starting up ...");
 
+const name = "fred";
+const car = {
+  "make" :"Ford",
+  
+};
+
 // 1 - pull in the HTTP server module
 const http = require('http');
 
@@ -43,10 +49,10 @@ const errorPage = `
 // 6 - this will return a random number no bigger than `max`, as a string
 // we will also doing our query parameter validation here
 const getRandomNumberJSON = (max=1) => {
-  max = Number(max);
-  max = !max ? 1: max;
-  max = max < 1 ? 1 : max;
-  const number = Math.random() * max;
+  max2 = Number(max);
+  max2 = !max2 ? 1: max2;
+  max2 = max2 < 1 ? 1 : max2;
+  const number = Math.random() * max2;
   const responseObj = {
     timestamp: new Date(),
     number: number
@@ -72,11 +78,11 @@ const onRequest = (request, response) => {
   console.log("max=", max);
 
 
-  if(pathname == "/"){
+  if(pathname === "/"){
     response.writeHead(200, {'Content-Type': 'text/html'});
     response.write(indexPage);
     response.end();
-  }else if(pathname == "/random-number"){
+  }else if(pathname === "/random-number"){
     response.writeHead(200, {'Content-Type': 'application/json'});
     response.write(getRandomNumberJSON(max));
     response.end();
